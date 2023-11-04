@@ -50,3 +50,4 @@ build/
 /docs/dev-ops/environment/rocketmq/data/rocketmq/store/checkpoint
 /docs/dev-ops/environment/rocketmq/data/rocketmq/store/lock
 /docs/dev-ops/environment/rocketmq/data/rocketmq/store/timerwheel
+/data/
