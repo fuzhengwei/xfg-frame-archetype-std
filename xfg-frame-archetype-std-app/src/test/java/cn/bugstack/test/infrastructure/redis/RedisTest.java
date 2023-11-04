@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 
 /**
- * Redis
+ * Redis 案例；<a href="https://bugstack.cn/md/road-map/redis.html">Redis</a>
  * @author Fuzhengwei bugstack.cn @小傅哥
  */
 @Slf4j
@@ -59,6 +59,5 @@ public class RedisTest {
             lock.unlock();
         }
     }
-
 
 }
