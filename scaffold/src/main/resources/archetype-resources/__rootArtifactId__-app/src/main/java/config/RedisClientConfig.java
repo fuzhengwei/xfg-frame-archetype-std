@@ -1,4 +1,7 @@
-package cn.bugstack.config;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.config;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -36,7 +39,7 @@ public class RedisClientConfig {
 
         config.useSingleServer()
                 .setAddress("redis://" + properties.getHost() + ":" + properties.getPort())
-//                .setPassword(properties.getPassword())
+                .setPassword(properties.getPassword())
                 .setConnectionPoolSize(properties.getPoolSize())
                 .setConnectionMinimumIdleSize(properties.getMinIdleSize())
                 .setIdleConnectionTimeout(properties.getIdleTimeout())
