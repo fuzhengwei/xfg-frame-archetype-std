@@ -1,4 +1,4 @@
-package cn.bugstack.test.infrastructure.redis;
+package cn.bugstack.test.infrastructure.persistent;
 
 import cn.bugstack.infrastructure.redis.IRedisService;
 import lombok.extern.slf4j.Slf4j;

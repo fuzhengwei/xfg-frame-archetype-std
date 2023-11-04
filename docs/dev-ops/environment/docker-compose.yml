@@ -86,6 +86,7 @@ services:
     container_name: mysql-job-dbdata
     volumes:
       - /var/lib/mysql
+
   # Redis
   redis:
     image: redis:7.2.0
@@ -97,6 +98,25 @@ services:
     command: redis-server /usr/local/etc/redis/redis.conf
     networks:
       - my-network
+
+  # https://hub.docker.com/r/xuchengen/rocketmq
+  # 注意修改项；
+  # 01：data/rocketmq/conf/broker.conf 添加 brokerIP1=127.0.0.1
+  # 02：data/console/config/application.properties server.port=9009 - 如果8080端口被占用，可以修改或者添加映射端口
+  rocketmq:
+    image: livinphp/rocketmq:5.1.0
+    container_name: rocketmq
+    ports:
+      - 8080:8080
+      - 9876:9876
+      - 10909:10909
+      - 10911:10911
+      - 10912:10912
+    volumes:
+      - ./rocketmq/data:/home/app/data
+    environment:
+      TZ: "Asia/Shanghai"
+      NAMESRV_ADDR: "rocketmq:9876"
 
 networks:
   my-network:
