@@ -36,3 +36,17 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/docs/dev-ops/environment/data/
+/docs/dev-ops/environment/rocketmq/data/console/store/dashboard2023-11-04.json
+/docs/dev-ops/environment/rocketmq/data/console/store/dashboard2023-11-04_topic.json
+/docs/dev-ops/environment/rocketmq/data/logs/consolelogs/
+/docs/dev-ops/environment/rocketmq/data/logs/rocketmqlogs/
+/docs/dev-ops/environment/rocketmq/data/rocketmq/store/commitlog/
+/docs/dev-ops/environment/rocketmq/data/rocketmq/store/config/
+/docs/dev-ops/environment/rocketmq/data/rocketmq/store/consumequeue/
+/docs/dev-ops/environment/rocketmq/data/rocketmq/store/index/
+/docs/dev-ops/environment/rocketmq/data/rocketmq/store/abort
+/docs/dev-ops/environment/rocketmq/data/rocketmq/store/abort.bak
+/docs/dev-ops/environment/rocketmq/data/rocketmq/store/checkpoint
+/docs/dev-ops/environment/rocketmq/data/rocketmq/store/lock
+/docs/dev-ops/environment/rocketmq/data/rocketmq/store/timerwheel
