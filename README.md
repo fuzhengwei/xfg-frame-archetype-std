@@ -1,6 +1,10 @@
 # xfg-frame-archetype - DDD 脚手架
 
-**备注**：2核4G 可部署整套环境开发学习 [京东云服务器 2核4G 132元/1年或者3年的](https://3.cn/1K-cfT7D)
+## 重要信息
+
+- 2核4G 可部署整套环境开发学习 [京东云服务器 2核4G 132元/1年或者3年的](https://3.cn/1K-cfT7D)
+- 工程中没有提供 application/case 层，如果你的工程较大，可以使用脚手架构建完工程后，自己新增加此模块
+- 框架使用文档：[https://bugstack.cn/md/road-map/ddd-archetype.html](https://bugstack.cn/md/road-map/ddd-archetype.html) - 此文章下还有系列的 DDD 知识
 
 ## Maven - 阿里云镜像
 
