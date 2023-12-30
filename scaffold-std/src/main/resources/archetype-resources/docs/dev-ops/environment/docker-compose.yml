@@ -1,18 +1,18 @@
 # 命令执行 docker-compose up -d
 version: '3.9'
 # 安装开发环境
-# 配置中心nacos：http://127.0.0.1:8848/nacos - 【账号：nacos 密码：nacos】
+# 配置中心nacos：http://192.168.64.130:8848/nacos - 【账号：nacos 密码：nacos】
 # 消息rocketmq：http://localhost:8080/#/ - 【账号：admin 密码：admin】
-# 任务调度xxl-job-admin：http://127.0.0.1:9090/xxl-job-admin/ - 【账号：admin 密码：123456】
+# 任务调度xxl-job-admin：http://192.168.64.130:9090/xxl-job-admin/ - 【账号：admin 密码：123456】
 # 数据库mysql
 # 缓存redis
 services:
   # 注册中心 https://github.com/nacos-group/nacos-docker - 其他配置可参考(集群)
-  # http://127.0.0.1:8848/nacos 【账号：nacos 密码：nacos】
+  # http://192.168.64.130:8848/nacos 【账号：nacos 密码：nacos】
   nacos:
     image: nacos/nacos-server:v2.2.3-slim
-    container_name: nacos
-    restart: always
+    container_name: xfg-nacos
+    restart: unless-stopped
     ports:
       - "8848:8848"
       - "9848:9848"
@@ -30,17 +30,17 @@ services:
       - NACOS_AUTH_IDENTITY_VALUE=2xxx
       - NACOS_AUTH_TOKEN=SecretKey012345678901234567890123456789012345678901234567890123456789
     networks:
-      - my-network
+      - xfg-network
     depends_on:
       mysql:
         condition: service_healthy
 
-  # http://127.0.0.1:9090/xxl-job-admin admin/123456 - 安装后稍等会访问即可
+  # http://192.168.64.130:9090/xxl-job-admin admin/123456 - 安装后稍等会访问即可
   # 官网镜像为 xuxueli/xxl-job-admin:2.4.0 但不支持ARM架构【需要自己打包】，所以找了一个 kuschzzp/xxl-job-aarch64:2.4.0 镜像支持 AMD/ARM
   xxl-job-admin:
     image: xuxueli/xxl-job-admin:2.4.0
-    container_name: xxl-job-admin
-    restart: always
+    container_name: xfg-xxl-job-admin
+    restart: unless-stopped
     depends_on:
       mysql:
         condition: service_healthy
@@ -57,22 +57,22 @@ services:
       - SPRING_DATASOURCE_PASSWORD=123456
       - SERVER_PORT=9090
     networks:
-      - my-network
+      - xfg-network
 
   # MySQL 增加健康检测，避免
   mysql:
-    image: mysql:8.0.32
-    container_name: mysql
+    image: mysql:8.0
+    container_name: xfg-mysql
     hostname: mysql
     command: --default-authentication-plugin=mysql_native_password
-    restart: always
+    restart: unless-stopped
     environment:
       TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_USER: xfg
       MYSQL_PASSWORD: 123456
     networks:
-      - my-network
+      - xfg-network
     depends_on:
       - mysql-job-dbdata
     ports:
@@ -96,14 +96,14 @@ services:
   # 自动加载数据
   mysql-job-dbdata:
     image: alpine:3.18.2
-    container_name: mysql-job-dbdata
+    container_name: xfg-mysql-job-dbdata
     volumes:
       - /var/lib/mysql
 
   # phpmyadmin https://hub.docker.com/_/phpmyadmin
   phpmyadmin:
     image: phpmyadmin:5.2.1
-    container_name: phpmyadmin
+    container_name: xfg-phpmyadmin
     hostname: phpmyadmin
     ports:
       - 8899:80
@@ -113,29 +113,29 @@ services:
       - PMA_PORT=3306
       - MYSQL_ROOT_PASSWORD=123456
     networks:
-      - my-network
+      - xfg-network
 
   # RedisAdmin https://github.com/joeferner/redis-commander
   redis-admin:
     image: spryker/redis-commander:0.8.0
-    container_name: redis-admin
+    container_name: xfg-redis-admin
     hostname: redis-commander
-    restart: always
+    restart: unless-stopped
     ports:
       - 8081:8081
     environment:
       - REDIS_HOSTS=local:redis:6379
     networks:
-      - my-network
+      - xfg-network
     depends_on:
       redis:
         condition: service_healthy
 
   # Redis
   redis:
-    image: redis:7.2.0
-    container_name: redis
-    restart: always
+    image: redis:6.2
+    container_name: xfg-redis
+    restart: unless-stopped
     hostname: redis
     ports:
       - 6379:6379
@@ -143,7 +143,7 @@ services:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
     command: redis-server /usr/local/etc/redis/redis.conf
     networks:
-      - my-network
+      - xfg-network
     healthcheck:
       test: [ "CMD", "redis-cli", "ping" ]
       interval: 10s
@@ -152,11 +152,11 @@ services:
 
   # https://hub.docker.com/r/xuchengen/rocketmq
   # 注意修改项；
-  # 01：data/rocketmq/conf/broker.conf 添加 brokerIP1=127.0.0.1
+  # 01：data/rocketmq/conf/broker.conf 添加 brokerIP1=192.168.64.130
   # 02：data/console/config/application.properties server.port=9009 - 如果8080端口被占用，可以修改或者添加映射端口
   rocketmq:
     image: livinphp/rocketmq:5.1.0
-    container_name: rocketmq
+    container_name: xfg-rocketmq
     ports:
       - 8080:8080
       - 9876:9876
@@ -170,5 +170,5 @@ services:
       NAMESRV_ADDR: "rocketmq:9876"
 
 networks:
-  my-network:
+  xfg-network:
     driver: bridge

@@ -56,7 +56,7 @@ public class UserOrderTest {
                     .orderStatus(0)
                     .isDelete(0)
                     .uuid(UUID.randomUUID().toString().replace("-", ""))
-                    .ipv4("127.0.0.1")
+                    .ipv4("192.168.64.130")
                     .ipv6("2001:0db8:85a3:0000:0000:8a2e:0370:7334".getBytes())
                     .extData("{${symbol_escape}"device${symbol_escape}": {${symbol_escape}"machine${symbol_escape}": ${symbol_escape}"IPhone 14 Pro${symbol_escape}", ${symbol_escape}"location${symbol_escape}": ${symbol_escape}"shanghai${symbol_escape}"}}")
                     .build();

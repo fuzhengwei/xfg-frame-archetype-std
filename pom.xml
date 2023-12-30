@@ -14,6 +14,7 @@
         <module>xfg-frame-archetype-std-infrastructure</module>
         <module>xfg-frame-archetype-std-types</module>
         <module>xfg-frame-archetype-std-api</module>
+        <module>scaffold-std</module>
     </modules>
 
     <properties>

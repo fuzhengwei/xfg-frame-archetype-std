@@ -26,7 +26,7 @@ mybatis:
 redis:
   sdk:
     config:
-      host: 127.0.0.1
+      host: 192.168.64.130
       port: 6379
       password: 123456
       pool-size: 10
@@ -45,7 +45,7 @@ dubbo:
     version: 1.0.0
   registry:
     id: nacos-registry
-    address: nacos://127.0.0.1:8848
+    address: nacos://192.168.64.130:8848
   protocol:
     name: dubbo
     port: -1
@@ -54,7 +54,7 @@ dubbo:
 
 # RocketMQ 配置，在docs/dev-ops下，有创建 xfg-group 脚本，也有场景mq消息的脚本
 rocketmq:
-  name-server: 127.0.0.1:9876
+  name-server: 192.168.64.130:9876
   consumer:
     group: xfg-group
     # 一次拉取消息最大值，注意是拉取消息的最大值而非消费最大值
@@ -82,7 +82,7 @@ xxl:
     accessToken: default_token
     # 注册地址
     admin:
-      addresses: http://localhost:9090/xxl-job-admin
+      addresses: http://192.168.64.130:9090/xxl-job-admin
     # 注册执行器
     executor:
       #  执行器注册 [选填]：优先使用该配置作为注册地址，为空时使用内嵌服务 ”IP:PORT“ 作为注册地址。从而更灵活的支持容器类型执行器动态IP和动态映射端口问题。
