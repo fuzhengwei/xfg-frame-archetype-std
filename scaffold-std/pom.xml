@@ -4,7 +4,7 @@
 
   <groupId>cn.bugstack</groupId>
   <artifactId>scaffold-std</artifactId>
-  <version>1.0</version>
+  <version>1.9</version>
   <packaging>maven-archetype</packaging>
 
   <name>xfg-frame-archetype-std</name>

@@ -108,7 +108,6 @@ services:
     ports:
       - 8899:80
     environment:
-      - PMA_ARBITRARY=1
       - PMA_HOST=mysql
       - PMA_PORT=3306
       - MYSQL_ROOT_PASSWORD=123456
@@ -125,6 +124,8 @@ services:
       - 8081:8081
     environment:
       - REDIS_HOSTS=local:redis:6379
+      - HTTP_USER=admin
+      - HTTP_PASSWORD=admin
     networks:
       - my-network
     depends_on:
