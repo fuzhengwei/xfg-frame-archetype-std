@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.xfg.frame.trigger.http;
+package ${package}.trigger.http;
 
 import ${package}.types.common.Constants;
 import ${package}.types.model.Response;
